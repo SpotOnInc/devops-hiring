@@ -1,0 +1,11 @@
+For the local development the solution will be using the Docker Compose. You don't have use the Kubernetes (you have to change an application instance fast).
+
+No Docker Compose:
+"docker build -t django-app:latest ."
+
+Docker Compose:
+1) build the image: "docker-compose up -d",
+2) rebuild the image (if you change the application code): "docker-compose up --build -d",
+3) remove all data: "docker-compose down -v --rmi all --remove-orphans".
+
+We can easily add a database or queue if needed to have whole stack in one file.

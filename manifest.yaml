@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-app-deployment
+  namespace: django-app
+  labels:
+    app: django-app-selector
+spec:
+  selector:
+    matchLabels:
+      app: django-app-selector
+  template:
+    metadata:
+      labels:
+        app: django-app-selector
+    spec:
+      containers:
+      - name: django-app
+        image: django-app:v2
+        ports:
+        - containerPort: 8000
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: django-app-selector
+  name: django-app-service
+  namespace: django-app
+spec:
+  selector:
+    app: django-app-selector
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: django-app-selector
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: django-app-ingress
+  namespace: django-app
+  labels:
+    app: django-app-common
+  annotation:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    - host: django.domain.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: django-app-service
+              servicePort: 8000

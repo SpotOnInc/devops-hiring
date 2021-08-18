@@ -1,0 +1,4 @@
+1) Does the application use any database or queue?
+2) Can we easilly scale the application horizontally? Wheter the application hase its own scaling solution (database, queue point of view) or we can simply add another application instance and load balancing the traffic?
+3) Is the application statelles? Can we build the Docker image once and easily switch between the environments (stage, production etc.)?
+4) How many environment you want to have? Development and production or more? How you want to build from the repository? One branch per environment or maybe you want to use feature branches?

@@ -1,0 +1,7 @@
+If you have your own Kubernetes cluster (for example Minikube) first you have to set the cluster context on your work station. Use the "kubectl config get-contexts" command to see if you have any other. Then open the "~/.kube/config" file and add the context (depends what king of authentication method you use to connect). After this you can set the right context by "kubectl config set-context your_context_name".
+
+You're ready to deploy the application by using the manifest (use the right namespace if needed):
+"kubect apply -f manifest.yml"
+
+And check if a Pod is up:
+"kubectl get pods"

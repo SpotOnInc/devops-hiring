@@ -1,0 +1,7 @@
+# Default values for polls-app.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+Name: polls-app
+Port: 8000
+Replicas: 3

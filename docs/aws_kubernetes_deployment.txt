@@ -1,0 +1,10 @@
+Infrastructure:
+I would recommend to setup all the AWS resources using Terraform or CloudFormation according to IaC paradigm. We would need to use at least EKS, EC2, ELB and Route53
+
+Kubernetes configuration:
+To optimally deploy the mentioned application I would recommend to fit to the set of following rules:
+- configure resources and limits according to standard application usage
+- setup HA of the application using topologySpreadConstrains, podDisruptionBudgets and cluster autoscaler with horizontal pod autoscaler
+- secure cluster f.e. by configuring ingress security group, exgress only node network, CNI or service mesh based pod networkPolicy, encryption at rest and encryption in transit
+- implement monitoring and visualisation tools to control the state of a cluster
+- choose preferred way of executing deployments ( Helm based deployment model of GitOps way of performing updates )

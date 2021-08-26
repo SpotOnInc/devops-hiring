@@ -1,0 +1,6 @@
+Local development could be conducted using the IDE, but I would recommend to extend this environment with the Python related static analytics plugins and security static analytics tools.
+
+Regarding the testing of new features, I would recommend to test functionalities on updated docker container instead of application launched from IDE. It would be also the best to test everything on a kind of Minikube with multiple replicas and separate local database enabled.
+The steps described in environment_setup file could be easly transformed into the simple script (except port-forward which should be running on a separate terminal window).
+
+Regarding the branching and merging model, the recommended flow depends on the seniority of the team. The same applies to the test development model (regular vs TDD)

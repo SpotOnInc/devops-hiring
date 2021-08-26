@@ -1,0 +1,5 @@
+Initial version of application didn't conform to the "Config" factor, which means that not all of the configuration settings were fully separated from the application code.
+
+I have implemented the example fix to move the SECRET_KEY and DEBUG parameters to Helm injected environment variables.
+
+Moving the SECRET_KEY variable make application more secure in case of unauthorized access to version control system, and the manipulation of DEBUG parameter make future deployments more flexible, as value of this parameter could be different across the environments.

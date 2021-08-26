@@ -1,0 +1,17 @@
+
+Running the application:
+1. Setup docker, kubectl, minikube and helm software
+
+2. Pull the repository, go to main directory and build the docker image:
+docker build -t polls-app:example-tag .
+
+3. Load image from docker registry to minikube cache (this may take a while):
+minikube cache add polls-app:example-tag
+
+4. Install helm chart and inject env variables
+helm upgrade --install polls-app ./minikube/polls-app --set Tag=example-tag --set Debug=false --set SecretKey='secret-key-value'
+
+5. Forward the service port locally:
+kubectl port-forward service/polls-app-service 8000:8000
+
+6. Application will be reachable under localhost:8000

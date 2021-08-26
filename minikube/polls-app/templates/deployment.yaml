@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: '{{ .Values.Name }}-deployment'
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.Name }}
+  replicas: {{ .Values.Replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.Name }}
+    spec:
+      containers:
+      - name: {{ .Values.Name }}
+        image: '{{ .Values.Name }}:{{ .Values.Tag }}'
+        ports:
+        - containerPort: {{ .Values.Port }}
+        envFrom:
+        - secretRef:
+            name: '{{ .Values.Name }}-secrets'
+        env:
+        - name: DEBUG_MODE
+          value: {{ .Values.Debug | quote }}

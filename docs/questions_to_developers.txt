@@ -1,0 +1,4 @@
+1. Is the application stateless or stateful? Is it prepared to work as multiple replicas connected to one database instead of using local sqlite files?
+2. What is a standard and maximum noticed cpu and memory used by an application?
+3. In the future development perspective, what is your way of analyzing the newly added dependencies from the security perspective?
+4. What is the structure of a development team? Is it the experienced team with the majority of senior or regular developers, or there is more junior developers than the experienced ones? This is important when choosing the desired development model

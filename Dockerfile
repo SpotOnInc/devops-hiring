@@ -10,4 +10,6 @@ ADD . /code
 # runs the pip install command for all packages listed in the requirements.txt file
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python", "/code/manage.py", "runserver", "0.0.0.0:8080"]
+EXPOSE 8000
+
+CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "mysite.wsgi"]

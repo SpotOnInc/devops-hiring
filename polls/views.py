@@ -5,6 +5,7 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Choice, Question
+import socket
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -54,3 +55,9 @@ def vote(request, question_id):
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
+
+
+def time(request):
+    time = timezone.now()
+    hostname = socket.gethostname()
+    return render(request, 'polls/time.html', {'time': time, 'hostname' : hostname})

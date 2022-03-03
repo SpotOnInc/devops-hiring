@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-dep
+  namespace: default
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      run: my-lb
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: my-lb
+    spec:
+      containers:
+      - image: docker.io/manoj7shekhawat/spoton-polls:v20220203-2
+        imagePullPolicy: IfNotPresent
+        name: my-app
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /code/az
+          name: azure
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - azureFile:
+          secretName: azure-secret
+          shareName: django
+        name: azure
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-dep
+  namespace: default
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    run: my-lb
+  sessionAffinity: ClientIP
+  type: ClusterIP
+
+
+---
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: polls
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: polls.mshekhawat.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: my-dep
+            port:
+              number: 8000
+        path: /
+        pathType: Prefix

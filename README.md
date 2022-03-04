@@ -4,7 +4,8 @@
 1. Forked repo
 2. Dockerize app and published image on docker hub at: docker.io/manoj7shekhawat/spoton-polls:v20220203-2
 3. To deploy this app to Kubernetes:
-- **prerequisite**: On all Worker nodes we need cifs-utils package. So please install it first using: yum -y install cifs-utils
+- **prerequisite**: On all Worker nodes we need cifs-utils package. So please install it first using: 
+- **yum -y install cifs-utils / apt-get update && apt-get install -y cifs-utils**
 - Create secret first by: kubectl apply -f az_secret.yml
 - Then create deployment by: kubectl apply -f spoton-polls.yml
 - **Optional Ingress controller on any public cloud AKS service only**: 

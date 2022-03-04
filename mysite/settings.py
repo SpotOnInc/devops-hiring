@@ -80,13 +80,23 @@ DB_PATH = "/az/db/" + ENV_TYPE
 
 #print(f"DB_PATH: {BASE_DIR + DB_PATH}")
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR + DB_PATH, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR + DB_PATH, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'polls',
+        'USER': 'mshekhawat@poll-db',
+        'PASSWORD': 'Bani123@koki',
+        'HOST': 'poll-db.mysql.database.azure.com',
+        'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

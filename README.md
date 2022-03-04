@@ -4,9 +4,6 @@
 1. Forked repo
 2. Dockerize app and published image on docker hub at: docker.io/manoj7shekhawat/spoton-polls:v20220203-2
 3. To deploy this app to Kubernetes:
-- **prerequisite**: On all Worker nodes we need cifs-utils package. So please install it first using: 
-- **yum -y install cifs-utils / apt-get update && apt-get install -y cifs-utils**
-- Create secret first by: kubectl apply -f az_secret.yml
 - Then create deployment by: kubectl apply -f spoton-polls.yml
 - **Optional Ingress controller on any public cloud AKS service only**: 
 - kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
@@ -14,14 +11,14 @@
 - kubectl apply -f spoton-ingress.yml
 - Finally access app at: http://polls.mshekhawat.com/time
 - **Please note:** My domain mshekhawat.com is registered at GoDaddy domain registrar but for above URL to work I need to add the external IP of ingress-nginx load balancer to be added into DNS records.
-- My instance is hosted at: http://devpolls.mshekhawat.com/time, http://devpolls.mshekhawat.com/admin
+- My instance is hosted at: http://uatpolls.mshekhawat.com/time, http://uatpolls.mshekhawat.com/admin
 
 ### DevOps Engineer
 1. [12-factor app model] Fixed below things:
 - Dependencies: I have isolated DB from app. Currently it is hosted at Azure File Share. I tried using MySQL server but looks like the current app schema is tightly coupled with SQLite and requires some effort. But if given some time I would like to move the DB to MySQL or similar that way we won't have Azure File Share dependency and we can greatly improve the app.
 - Concurrency: If we move DB to some external service like MySQL then our app will be able to handle requests concurrently.
 - Logs: We can stream app logs to some service like Azure Monitor.
-2. List of questions added to our app: http://devpolls.mshekhawat.com/admin
+2. List of questions added to our app: http://uatpolls.mshekhawat.com/admin
 
 ### Senior DevOps Engineer
 1. Local development process for this application (High level overview).

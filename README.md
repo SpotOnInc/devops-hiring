@@ -10,10 +10,11 @@
 - Then create deployment by: kubectl apply -f spoton-polls.yml
 - **Optional Ingress controller on any public cloud AKS service only**: 
 - kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+- Get External IP address of Ingress controller LB: k get svc --namespace ingress-nginx
 - kubectl apply -f spoton-ingress.yml
 - Finally access app at: http://polls.mshekhawat.com/time
 - **Please note:** My domain mshekhawat.com is registered at GoDaddy domain registrar but for above URL to work I need to add the external IP of ingress-nginx load balancer to be added into DNS records.
-- My instance is hosted at: http://devpolls.mshekhawat.com/time
+- My instance is hosted at: http://devpolls.mshekhawat.com/time, http://devpolls.mshekhawat.com/admin
 
 ### DevOps Engineer
 1. [12-factor app model] Fixed below things:

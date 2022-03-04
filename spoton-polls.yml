@@ -22,7 +22,7 @@ spec:
         run: my-lb
     spec:
       containers:
-      - image: docker.io/manoj7shekhawat/spoton-polls:v20220203-2
+      - image: docker.io/manoj7shekhawat/spoton-polls:v20220203-3
         imagePullPolicy: IfNotPresent
         name: my-app
         ports:
@@ -31,19 +31,11 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /code/az
-          name: azure
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      volumes:
-      - azureFile:
-          secretName: azure-secret
-          shareName: django
-        name: azure
 
 ---
 
@@ -61,4 +53,5 @@ spec:
     run: my-lb
   sessionAffinity: ClientIP
   type: ClusterIP
+
 

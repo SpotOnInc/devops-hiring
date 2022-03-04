@@ -2,7 +2,7 @@
 
 ### Junior DevOps Engineer
 1. Forked repo
-2. Dockerize app and published image on docker hub at: docker.io/manoj7shekhawat/spoton-polls:v20220203-2
+2. Dockerize app and published image on docker hub at: docker.io/manoj7shekhawat/spoton-polls:v20220203-3
 3. To deploy this app to Kubernetes:
 - Then create deployment by: kubectl apply -f spoton-polls.yml
 - **Optional Ingress controller on any public cloud AKS service only**: 

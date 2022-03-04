@@ -30,6 +30,7 @@
 
 3. Create a basic architecture diagram or description of how you would optimally deploy this application in AWS and Kubernetes. If not enough information or time for this, make sure you have the relevant questions ready for the engineering team to clarify the architecture.
 
+![arch](https://user-images.githubusercontent.com/5961390/156742862-99ec9719-4606-4789-b05c-53c2fadbf3d9.svg)
 
 
 

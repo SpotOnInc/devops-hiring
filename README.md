@@ -1,3 +1,38 @@
+# Candidates Notes
+
+### Junior DevOps Engineer
+1. Forked repo
+2. Dockerize app and published image on docker hub at: docker.io/manoj7shekhawat/spoton-polls:v20220203-3
+3. To deploy this app to Kubernetes:
+- Then create deployment by: kubectl apply -f spoton-polls.yml
+- **Optional Ingress controller on any public cloud AKS service only**: 
+- kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.1.1/deploy/static/provider/cloud/deploy.yaml
+- Get External IP address of Ingress controller LB: k get svc --namespace ingress-nginx
+- kubectl apply -f spoton-ingress.yml
+- Finally access app at: http://polls.mshekhawat.com/time
+- **Please note:** My domain mshekhawat.com is registered at GoDaddy domain registrar but for above URL to work I need to add the external IP of ingress-nginx load balancer to be added into DNS records.
+- My instance is hosted at: http://uatpolls.mshekhawat.com/time, http://uatpolls.mshekhawat.com/admin
+
+### DevOps Engineer
+1. [12-factor app model] Fixed below things:
+- Dependencies: I have isolated DB from app. Currently it is hosted at Azure File Share. I tried using MySQL server but looks like the current app schema is tightly coupled with SQLite and requires some effort. But if given some time I would like to move the DB to MySQL or similar that way we won't have Azure File Share dependency and we can greatly improve the app.
+- Concurrency: If we move DB to some external service like MySQL then our app will be able to handle requests concurrently.
+- Logs: We can stream app logs to some service like Azure Monitor.
+2. List of questions added to our app: http://uatpolls.mshekhawat.com/admin
+
+### Senior DevOps Engineer
+1. Local development process for this application (High level overview).
+- Developers will create a feature branch from the main branch. And will work on that feature branch.
+- We will have merge validation pipeline in CI Tool (Teamcity/GitLab/Azure DevOps), where will be continously run all the test cases of the app with every push to the git branch. Once the chnages are finalised. Devlopers will create a new pull request. Code will be reviewed by peers. Finally it will be merged in our release branch (main for our app).
+- We will have seprated Release pipeline which will be triggered automatically by the merge from feature to main branch. It will also be running all automated tests. Once everything ran fine we will publish the docker image on to the artifactory with a specific tag.
+- Once we have docker image on to artifactory we can deploy our application using that image (we published by release pipeline) on to dev/qa/pre-prod/prod enviroment.
+
+3. Create a basic architecture diagram or description of how you would optimally deploy this application in AWS and Kubernetes. If not enough information or time for this, make sure you have the relevant questions ready for the engineering team to clarify the architecture.
+
+![arch](https://user-images.githubusercontent.com/5961390/156742862-99ec9719-4606-4789-b05c-53c2fadbf3d9.svg)
+
+
+
 # Django Polls App For DevOps Candidates
 
 This is the Django 2.2 tutorial polls app, taken straight from the Django project's official website.

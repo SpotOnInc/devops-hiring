@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: polls
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: polls.mshekhawat.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: my-dep
+            port:
+              number: 8000
+        path: /
+        pathType: Prefix

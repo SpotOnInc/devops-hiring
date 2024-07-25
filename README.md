@@ -1,3 +1,7 @@
+# ARCHIVE INFORMATION
+> [!IMPORTANT]
+> Due to lack of usage and maintenance, this repository has been archived.  
+> Please read the [repository archival FAQ](https://docs.corp.spoton.sh/developer/undocumented-repositories-archival-faq/) for more information!
 # Django Polls App For DevOps Candidates
 
 This is the Django 2.2 tutorial polls app, taken straight from the Django project's official website.

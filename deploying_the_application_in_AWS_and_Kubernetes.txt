@@ -1,0 +1,7 @@
+For deploying a Kubernetes manifest we'll use the Helm as a template engine. Thanks to this we have only one set of manifests and we can easily switch between the environments.
+
+To deploy on the EKS we need to create an IAM user with the right policies (I wrote a simple code in the "terraform.tf" file).
+
+Depends what kind of CI CD server we use but I assume that we have for example GitLab what means we can apply a GitOps approach.
+
+We put the IAM user secret and access key in the variables section of the CI CD server as well as Kubernetes configuration file. Now we can use our shell scripts which we store in the repository and use Helm to deploy on the Kubernetes server.
